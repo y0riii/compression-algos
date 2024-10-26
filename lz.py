@@ -16,7 +16,7 @@ def compress(data):
 
         for j in range(1, min(windowSize, i) + 1):
             length = 0
-            while (length < min(j, lookahead) and 
+            while (length < lookahead and 
                    data[i - j + length] == data[i + length]):
                 length += 1
 
