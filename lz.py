@@ -1,6 +1,6 @@
 # s = "ABAABABAABBBBBBBBBBBBA"
 # s = "ABAABABABABABABABABABA"
-s = "CABRACADABRARRARRAD"
+s = "CABRACADABRARRARRADDD"
 
 def compress(data):
     n = len(data)
@@ -12,11 +12,11 @@ def compress(data):
     while i < n:
         matchOffset = 0
         matchLength = 0
-        lookahead = min(bufferSize, n - i)
+        lookahead = min(bufferSize, n - i - 1)
 
         for j in range(1, min(windowSize, i) + 1):
             length = 0
-            while (length < lookahead and 
+            while (length < min(j, lookahead) and 
                    data[i - j + length] == data[i + length]):
                 length += 1
 
@@ -24,7 +24,7 @@ def compress(data):
                 matchLength = length
                 matchOffset = j
 
-        nextChar = data[i + matchLength] if i + matchLength < n else ""
+        nextChar = data[i + matchLength]
         res.append((matchOffset, matchLength, nextChar))
         i += matchLength + 1
 
@@ -37,12 +37,14 @@ def deCompress(res_data):
         start = len(res) - offset
         for i in range(length):
             res.append(res[start + i])
-        if char:
-            res.append(char)
+        res.append(char)
 
     return ''.join(res)        
               
 
-arr = compress(s)
-print(arr)
-print(deCompress(arr) == s)
+compressed = compress(s)
+print(compressed)
+
+decompressed = deCompress(compressed)
+print(decompressed)
+print(decompressed == s)
