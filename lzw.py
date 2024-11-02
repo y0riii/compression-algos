@@ -35,6 +35,22 @@ s = input()
 compressed = lzw_compress(s)
 print(compressed)
 
+# compressed = ''
+# with open("input.txt", "r") as file:
+#     compressed = lzw_compress(file.read())
+
+# with open("compressed.txt", "w") as file:
+#     file.write(str(compressed))
+
+# with open("compressed.txt", "r") as file:
+#     compressed = file.read()[1:-1].split(", ")
+#     compressed = [int(i) for i in compressed]
+
+# with open("output.txt", "w") as file:
+#     file.write(lzw_decompress(compressed))
+
+# print(filecmp.cmp("input.txt", "output.txt"))
+
 decompressed = lzw_decompress(compressed)
 print(decompressed)
 
