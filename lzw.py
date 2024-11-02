@@ -1,3 +1,5 @@
+import filecmp
+
 DICTIONARY = [chr(i) for i in range(128)]
 
 def lzw_compress(data):
