@@ -18,9 +18,9 @@ def getDict(node, huff=""):
     huff_dict = {}
 
     if (node.left):
-        huff_dict.update(getDict(node.left, huff + "1"))
+        huff_dict.update(getDict(node.left, huff + "0"))
     if (node.right):
-        huff_dict.update(getDict(node.right, huff + "0"))
+        huff_dict.update(getDict(node.right, huff + "1"))
     if (not node.left and not node.right):
         huff_dict[node.symbol] = huff
     return huff_dict
