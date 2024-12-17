@@ -88,10 +88,10 @@ def compress(image_path, output_file, block_size, book_size):
 
 
 if __name__ == "__main__":
-    image_path = "img.jpg"
+    image_path = "grayscale.jpg"
     output_file = "compressed.json"
-    block_size = 4
-    book_size = 32
+    block_size = 7
+    book_size = 16
 
     try:
         compress(image_path, output_file, block_size, book_size)

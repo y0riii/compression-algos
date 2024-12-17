@@ -19,19 +19,18 @@ def decompress(compressed_file, output_path):
 
     reconstructed_image = np.zeros(padded_shape, dtype=np.uint8)
     vector_idx = 0
+    code_book = [vector.reshape(block_shape) for vector in code_book]
     for i in range(0, padded_shape[0], block_size):
         for j in range(0, padded_shape[1], block_size):
-            codebook_vector = code_book[vectors[vector_idx]]
-            block = codebook_vector.reshape(block_shape)
-
-            reconstructed_image[i:i + block_size, j:j + block_size] = block
-
+            reconstructed_image[i:i + block_size, j:j + block_size] = code_book[vectors[vector_idx]]
             vector_idx += 1
+
     final_image = reconstructed_image[:rows, :cols]
     cv2.imwrite(output_path, final_image)
+    print(f"Decompressed image shape: {final_image.shape}")
 
 
 if __name__ == "__main__":
     compressed_file = "compressed.json"
-    output_path = "decompressed.png"
+    output_path = "decompressed.jpg"
     decompress(compressed_file, output_path)
